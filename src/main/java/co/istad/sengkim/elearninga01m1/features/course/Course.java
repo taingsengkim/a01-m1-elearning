@@ -40,6 +40,7 @@ public class Course {
     private String thumbnail;
 
     private Integer countRating;
+    private Integer raitingStar;
     private Float totalHours;
     private String level;
     private BigDecimal price;

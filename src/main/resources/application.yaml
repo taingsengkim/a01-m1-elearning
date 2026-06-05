@@ -3,11 +3,16 @@ spring:
     name: elearning-a01-m1
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     username: ${USERNAME}
     driver-class-name: org.postgresql.Driver
     password: ${PASSWORD}
     url: ${URL}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/istad
 server:
   port: 8099

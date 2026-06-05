@@ -18,6 +18,11 @@ import java.util.List;
 @NoArgsConstructor
 public class InstructorProfile {
 
+    public InstructorProfile(String userId){
+        this.userId = userId;
+    }
+
+
     @Id
     private String userId; // the id is generated from keycloak
 

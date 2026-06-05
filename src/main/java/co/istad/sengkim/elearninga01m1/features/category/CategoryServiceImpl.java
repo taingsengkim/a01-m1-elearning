@@ -6,6 +6,7 @@ import co.istad.sengkim.elearninga01m1.features.category.dto.UpdateCategoryReque
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Page<CategoryResponse> allCategories(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        Pageable pageable = PageRequest.of(pageNumber,pageSize, Sort.by(Sort.Direction.DESC,"id"));
         Page<Category> categoryPage = categoryRepository.findAllByIsDeleted(false,pageable);
         return categoryPage.map(d->new CategoryResponse(d.getId(),d.getName(),d.getIcon()));
     }

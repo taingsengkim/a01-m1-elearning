@@ -43,8 +43,4 @@ public class AppGlobalExceptionHandler {
                 .timestamp(Instant.now())
                 .errors(fields).build();
     }
-
-
-
-
 }
