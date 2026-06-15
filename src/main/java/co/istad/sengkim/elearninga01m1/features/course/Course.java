@@ -1,6 +1,7 @@
 package co.istad.sengkim.elearninga01m1.features.course;
 
 
+import co.istad.sengkim.elearninga01m1.config.config.BasedEntity;
 import co.istad.sengkim.elearninga01m1.features.category.Category;
 import co.istad.sengkim.elearninga01m1.features.enrollment.Enrollment;
 import co.istad.sengkim.elearninga01m1.features.instructor.InstructorProfile;
@@ -22,7 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "courses")
-public class Course {
+public class Course extends BasedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -45,8 +46,7 @@ public class Course {
     private String level;
     private BigDecimal price;
     private Float discountPercent;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+
     @Column(nullable = false)
     private Boolean isDeleted;
     private Boolean isPublished;

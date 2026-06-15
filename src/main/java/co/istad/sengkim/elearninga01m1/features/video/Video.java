@@ -1,5 +1,6 @@
 package co.istad.sengkim.elearninga01m1.features.video;
 
+import co.istad.sengkim.elearninga01m1.config.config.BasedEntity;
 import co.istad.sengkim.elearninga01m1.features.comment.Comment;
 import co.istad.sengkim.elearninga01m1.features.course.Course;
 import jakarta.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "videos")
-public class Video {
+public class Video extends BasedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

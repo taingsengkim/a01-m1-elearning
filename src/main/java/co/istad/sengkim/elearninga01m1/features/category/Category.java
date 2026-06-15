@@ -1,5 +1,6 @@
 package co.istad.sengkim.elearninga01m1.features.category;
 
+import co.istad.sengkim.elearninga01m1.config.config.BasedEntity;
 import co.istad.sengkim.elearninga01m1.features.course.Course;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "categories")
-public class Category {
+public class Category extends BasedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

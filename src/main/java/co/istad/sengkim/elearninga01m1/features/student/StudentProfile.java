@@ -1,5 +1,6 @@
 package co.istad.sengkim.elearninga01m1.features.student;
 
+import co.istad.sengkim.elearninga01m1.config.config.BasedEntity;
 import co.istad.sengkim.elearninga01m1.features.enrollment.Enrollment;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,7 +17,7 @@ import java.util.List;
 @Table(name = "student_profiles")
 @Entity
 @NoArgsConstructor
-public class StudentProfile {
+public class StudentProfile extends BasedEntity {
 
     @Id
     private String userId; // the id is generated from keycloak

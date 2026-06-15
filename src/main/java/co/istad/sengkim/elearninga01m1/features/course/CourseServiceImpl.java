@@ -40,8 +40,6 @@ public class CourseServiceImpl implements CourseService{
         course.setCountRating(0);
         course.setIsDeleted(false);
         course.setIsPublished(false);
-        course.setCreatedAt(LocalDateTime.now());
-        course.setUpdatedAt(LocalDateTime.now());
         course.setInstructorProfile(new InstructorProfile(jwt.getSubject()));
         course = courseRepository.save(course);
         return courseMapper.mapCourseToCourseResponse(course);
