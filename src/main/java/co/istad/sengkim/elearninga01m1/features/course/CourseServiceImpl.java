@@ -7,9 +7,11 @@ import co.istad.sengkim.elearninga01m1.features.category.dto.CreateCategoryReque
 import co.istad.sengkim.elearninga01m1.features.course.dto.CourseResponse;
 import co.istad.sengkim.elearninga01m1.features.course.dto.CreateCourseRequest;
 import co.istad.sengkim.elearninga01m1.features.instructor.InstructorProfile;
+import co.istad.sengkim.elearninga01m1.security.AuthUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,7 +28,7 @@ public class CourseServiceImpl implements CourseService{
         this.courseMapper = courseMapper;
     }
     @Override
-    public CourseResponse createCourse(Jwt jwt, CreateCourseRequest createCourseRequest) {
+    public CourseResponse createCourse( CreateCourseRequest createCourseRequest) {
         if(courseRepository.existsBySlug(createCourseRequest.slug())){
             throw new ResponseStatusException(HttpStatus.CONFLICT,"Slug has been used.");
         }
@@ -40,7 +42,13 @@ public class CourseServiceImpl implements CourseService{
         course.setCountRating(0);
         course.setIsDeleted(false);
         course.setIsPublished(false);
-        course.setInstructorProfile(new InstructorProfile(jwt.getSubject()));
+//
+//        JwtAuthenticationToken jwt = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+//        IO.println(jwt);
+//        IO.println(jwt.getToken());
+//        IO.println(jwt.getToken().getSubject());
+
+        course.setInstructorProfile(new InstructorProfile(AuthUtils.extractUserId()));
         course = courseRepository.save(course);
         return courseMapper.mapCourseToCourseResponse(course);
     }

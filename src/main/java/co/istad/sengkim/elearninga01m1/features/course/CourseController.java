@@ -20,10 +20,10 @@ public class CourseController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public CourseResponse createCourse(
-            @Valid @RequestBody CreateCourseRequest createCourseRequest,
-            @AuthenticationPrincipal Jwt jwt)
+            @Valid @RequestBody CreateCourseRequest createCourseRequest
+          )
     {
-        log.info("CREATE COURSE : {} , JWT : {}",createCourseRequest,jwt.getSubject());
-        return courseService.createCourse(jwt,createCourseRequest);
+        log.info("CREATE COURSE : {}",createCourseRequest);
+        return courseService.createCourse(createCourseRequest);
     }
 }

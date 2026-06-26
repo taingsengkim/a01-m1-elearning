@@ -6,7 +6,7 @@ import co.istad.sengkim.elearninga01m1.features.course.dto.CreateCourseRequest;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 public interface CourseService {
-    CourseResponse createCourse(Jwt jwt, CreateCourseRequest createCourseRequest);
+    CourseResponse createCourse( CreateCourseRequest createCourseRequest);
 
 
 }
