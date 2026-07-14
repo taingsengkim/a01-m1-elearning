@@ -27,6 +27,17 @@ public class AppGlobalExceptionHandler {
         return new ResponseEntity<>(restErrorResponse,e.getStatusCode());
     }
 
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public ResponseEntity<?> handleHttpMessageNotReadableException(ResponseStatusException e){
+        RestErrorResponse restErrorResponse = RestErrorResponse.builder()
+                .message(e.getMessage())
+                .code(e.getStatusCode().value())
+                .status(e.getStatusCode().toString())
+                .timestamp(Instant.now())
+                .errors(e.getReason()).build();
+        return new ResponseEntity<>(restErrorResponse,e.getStatusCode());
+    }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

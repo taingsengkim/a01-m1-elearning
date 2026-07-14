@@ -24,13 +24,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain apiSecurity(HttpSecurity http) {
         //Security Mechani
-        http.oauth2ResourceServer(oauth->
-                oauth.jwt(Customizer.withDefaults()));
-
+//        http.oauth2ResourceServer(oauth->
+//                oauth.jwt(Customizer.withDefaults()));
+        http.oauth2ResourceServer(oauth ->
+                oauth.jwt(jwt ->
+                        jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())
+                ));
         http.authorizeHttpRequests(auth ->
                 auth.requestMatchers(HttpMethod.GET,"/api/v1/categories/**","/api/v1/courses").permitAll()
                         .requestMatchers("/v3/api-docs/**","/swagger-ui/**","/swagger-ui.html").permitAll()
                         .requestMatchers("/scalar/**").permitAll()
+                        .requestMatchers("/api/v1/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/v1/courses/**").hasAnyRole("INSTRUCTOR","ADMIN")
                         .anyRequest().authenticated());
 

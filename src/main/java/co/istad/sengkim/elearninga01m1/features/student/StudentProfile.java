@@ -22,7 +22,7 @@ public class StudentProfile extends BasedEntity {
     @Id
     private String userId; // the id is generated from keycloak
 
-    private String biography;
+    private String profilePicture;
 
     private String phoneNumber;
 
@@ -33,6 +33,8 @@ public class StudentProfile extends BasedEntity {
     private String university;
 
     private String major;
+
+
 
     @OneToMany(mappedBy = "studentProfile")
     private List<Enrollment> enrollments;

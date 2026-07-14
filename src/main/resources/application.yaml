@@ -16,3 +16,9 @@ spring:
           issuer-uri: http://localhost:8080/realms/elearning
 server:
   port: 8099
+keycloak:
+  base-url: http://localhost:8080
+  client-id: spring-boot-elearning
+  client-secret: Nm4OvTShHNtSglukRyZoPa4cWAxIKiWm
+  realm: master
+  target-realm: elearning
